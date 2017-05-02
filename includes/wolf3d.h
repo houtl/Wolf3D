@@ -6,7 +6,7 @@
 /*   By: thou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/22 15:42:05 by thou              #+#    #+#             */
-/*   Updated: 2017/04/22 17:07:02 by thou             ###   ########.fr       */
+/*   Updated: 2017/05/02 17:57:39 by thou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@
 #include "libft.h"
 #include "mlx_key.h"
 #include <math.h>
+
+# define WIDTH		1920
+# define HEIGHT 	1080
 
 typedef struct	s_all
 {
@@ -31,6 +34,8 @@ typedef struct	s_all
 	int			ed;
 	int			pos_x;
 	int			pos_y;
+	int			lv;
+	int			fd;
 }				t_a;
 
 /*
