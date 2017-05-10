@@ -6,7 +6,7 @@
 /*   By: thou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/22 16:25:37 by thou              #+#    #+#             */
-/*   Updated: 2017/05/03 18:26:07 by thou             ###   ########.fr       */
+/*   Updated: 2017/05/10 16:26:59 by thou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void ft_checkfile(int fd)
 	int		i;
 	int		x;
 	char	*line;
-	int		len;
+	size_t	len;
 	int		last;
 
 	i = 0;
@@ -28,16 +28,15 @@ static void ft_checkfile(int fd)
 		if (i == 1)
 			if ((len = ft_strlen(line)) < 3 || ft_stricmp(line, "1") == 0)
 				ft_error("file invalide");
-		else if (i > 1)
-			if (len != ft_strlen(line) || ft_stricmp(line, "01x") == 0 ||
-					line[0] != '1' || line[ft_strlen(line) - 1] != 1)
+		if (i > 1)
+			if (len != ft_strlen(line) || ft_stricmp(line, "01X") == 0 ||
+					line[0] != '1' || line[ft_strlen(line) - 1] != '1')
 				ft_error("file invalide");
-		if (ft_stricmp(line, "x"))
-			x = 1;
+		x += ft_charnb(line, 'X');
 		last = (ft_stricmp(line, "1") == 0) ? 0 : 1;
 		free(line);
 	}
-	if (x != 1 || last != 1)
+	if (x != 1 || last != 1 || i < 3)
 		ft_error("file invalide");
 }
 
@@ -49,8 +48,9 @@ static void	ft_checkfiles(t_a *a)
 	while (a->file[i])
 	{
 		a->fd = open(a->file[i], O_RDONLY);
-		ft_checkfile(fd);
-		close(fd);
+		ft_checkfile(a->fd);
+		close(a->fd);
+		i++;
 	}
 }
 
@@ -65,13 +65,13 @@ int 		main(int ac, char **av)
 	i = ac;
 	a.file = (char**)malloc(sizeof(char*) * i);
 	a.file[i - 1] = NULL;
-	while (--i > 1)
+	while (--i > 0)
 		a.file[i - 1] = ft_strdup(av[i]);
 	ft_checkfiles(&a);
 	if (!(a.mlx = mlx_init()))
 		ft_error("mlx_init error");
 	if (!(a.win = mlx_new_window(a.mlx, WIDTH, HEIGHT, "WOLF3D")))
 		ft_error("mlx_new_window error");
-	ft_menu(&a);
+//	ft_menu(&a);
 	return (0);
 }
