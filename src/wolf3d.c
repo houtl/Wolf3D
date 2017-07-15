@@ -6,15 +6,15 @@
 /*   By: thou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/22 16:25:37 by thou              #+#    #+#             */
-/*   Updated: 2017/05/10 18:04:42 by thou             ###   ########.fr       */
+/*   Updated: 2017/07/15 18:24:58 by thou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-void	ft_init(t_a a)
+void	ft_init(t_a *a)
 {
-	
+	ft_xpmtoimg(a);
 }
 
 static void ft_checkfile(int fd)
@@ -79,6 +79,7 @@ int 		main(int ac, char **av)
 		ft_error("mlx_new_window error");
 	ft_init(&a);
 	ft_menu(&a);
+	mlx_hook(v->win, 2, (1L << 0), key_, v);
 	mlx_loop(a.mlx);
 	return (0);
 }

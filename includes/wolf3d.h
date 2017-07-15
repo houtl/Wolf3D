@@ -6,7 +6,7 @@
 /*   By: thou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/22 15:42:05 by thou              #+#    #+#             */
-/*   Updated: 2017/05/03 17:26:24 by thou             ###   ########.fr       */
+/*   Updated: 2017/07/15 18:24:55 by thou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,12 @@
 
 # define WIDTH		1920
 # define HEIGHT 	1080
+
+typedef struct	s_img
+{
+	void		*start;
+	void		*prods;
+}				t_img;
 
 typedef struct	s_all
 {
@@ -38,6 +44,7 @@ typedef struct	s_all
 	int			fd;
 	char		*line;
 	int			len;
+	t_img		xpm;
 }				t_a;
 
 /*
@@ -45,5 +52,6 @@ typedef struct	s_all
 */
 
 void			ft_error(char *str);
+void			ft_xpmtoimg(t_a *a);
 
 #endif
