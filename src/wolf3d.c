@@ -6,15 +6,20 @@
 /*   By: thou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/22 16:25:37 by thou              #+#    #+#             */
-/*   Updated: 2017/07/15 18:24:58 by thou             ###   ########.fr       */
+/*   Updated: 2017/09/05 18:08:07 by thou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
-
+#include <stdio.h>
 void	ft_init(t_a *a)
 {
-	ft_xpmtoimg(a);
+	a->menu = -1;
+	a->game_start = 0;
+	a->img = mlx_xpm_file_to_image(a->mlx, "assets/images/start/start.xpm", &(a->i), &(a->j));
+	mlx_put_image_to_window(a->mlx, a->win, a->img, (1920 - a->i) / 2, (1080 - a->j) / 2);
+	mlx_string_put(a->mlx, a->win, 960, 530, GREEN, "WOLF3D");
+	mlx_string_put(a->mlx, a->win, 830, 640, YELLOW, "APPUYER SUR ENTRER POUR CONTINUER");
 }
 
 static void ft_checkfile(int fd)
@@ -78,8 +83,9 @@ int 		main(int ac, char **av)
 	if (!(a.win = mlx_new_window(a.mlx, WIDTH, HEIGHT, "WOLF3D")))
 		ft_error("mlx_new_window error");
 	ft_init(&a);
-	ft_menu(&a);
-	mlx_hook(v->win, 2, (1L << 0), key_, v);
+	mlx_hook(a.win, 17, 18, ft_error, "EXIT");
+	mlx_mouse_hook(a.win, mouse_hook_func, &a);
+	mlx_hook(a.win, 2, (1L << 01), key_hook_func, &a);
 	mlx_loop(a.mlx);
 	return (0);
 }

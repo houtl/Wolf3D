@@ -6,7 +6,7 @@
 /*   By: thou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/22 15:42:05 by thou              #+#    #+#             */
-/*   Updated: 2017/07/15 18:24:55 by thou             ###   ########.fr       */
+/*   Updated: 2017/09/05 18:11:06 by thou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "mlx.h"
 #include "libft.h"
 #include "mlx_key.h"
+#include "color.h"
 #include <math.h>
 
 # define WIDTH		1920
@@ -45,13 +46,31 @@ typedef struct	s_all
 	char		*line;
 	int			len;
 	t_img		xpm;
+	int			menu;
+	int			mx;
+	int			my;
+	int			game_start;
+	int			i;
+	int			j;
 }				t_a;
 
 /*
 **				info.c
 */
 
-void			ft_error(char *str);
+int				ft_error(char *str);
 void			ft_xpmtoimg(t_a *a);
 
+/*
+**				menu.c
+*/
+
+void			ft_menu(t_a *a);
+
+/*
+**
+*/
+
+int				key_hook_func(int keycode, t_a *a);
+int				mouse_hook_func(int botton, int x, int y, t_a *a);
 #endif

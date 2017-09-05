@@ -6,7 +6,7 @@
 #    By: thou <marvin@42.fr>                        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/04 17:35:06 by thou              #+#    #+#              #
-#    Updated: 2017/04/22 17:23:44 by thou             ###   ########.fr        #
+#    Updated: 2017/07/21 15:54:18 by thou             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ NAME		=	wolf3d
 FLAG		=	-Wall -Werror -Wextra
 FLAGMLX		=	-lmlx -framework OpenGL -framework Appkit
 SRC_DIR		=	src/
-SRC_BASE	=	wolf3d.c info.c
+SRC_BASE	=	wolf3d.c info.c menu.c hook.c
 SRC			=	$(addprefix $(SRC_DIR), $(SRC_BASE))
 OBJ_DIR		=	obj/
 LIBFT		=	./libft
