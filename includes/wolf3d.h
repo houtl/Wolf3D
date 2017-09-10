@@ -6,18 +6,19 @@
 /*   By: thou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/22 15:42:05 by thou              #+#    #+#             */
-/*   Updated: 2017/09/05 18:11:06 by thou             ###   ########.fr       */
+/*   Updated: 2017/09/10 17:28:24 by thou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef WOLF3D_H
 # define WOLF3D_H
 
-#include "mlx.h"
-#include "libft.h"
-#include "mlx_key.h"
-#include "color.h"
-#include <math.h>
+# include "mlx.h"
+# include "libft.h"
+# include "mlx_key.h"
+# include "color.h"
+# include <math.h>
+# include "asset.h"
 
 # define WIDTH		1920
 # define HEIGHT 	1080
@@ -28,6 +29,12 @@ typedef struct	s_img
 	void		*prods;
 }				t_img;
 
+typedef struct	s_menu
+{
+	int			menu;
+	int			max;
+	int			choise;
+}				t_menu;
 typedef struct	s_all
 {
 	void		*mlx;
@@ -46,7 +53,7 @@ typedef struct	s_all
 	char		*line;
 	int			len;
 	t_img		xpm;
-	int			menu;
+	t_menu		m;
 	int			mx;
 	int			my;
 	int			game_start;
@@ -65,12 +72,13 @@ void			ft_xpmtoimg(t_a *a);
 **				menu.c
 */
 
-void			ft_menu(t_a *a);
+void			ft_menu(t_a *a, int keycode);
 
 /*
-**
+**				hook.c
 */
 
 int				key_hook_func(int keycode, t_a *a);
 int				mouse_hook_func(int botton, int x, int y, t_a *a);
+
 #endif

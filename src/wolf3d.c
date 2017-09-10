@@ -6,23 +6,26 @@
 /*   By: thou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/22 16:25:37 by thou              #+#    #+#             */
-/*   Updated: 2017/09/05 18:08:07 by thou             ###   ########.fr       */
+/*   Updated: 2017/09/10 17:25:26 by thou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 #include <stdio.h>
-void	ft_init(t_a *a)
+
+void		ft_init(t_a *a)
 {
-	a->menu = -1;
+	a->m.menu = -1;
 	a->game_start = 0;
-	a->img = mlx_xpm_file_to_image(a->mlx, "assets/images/start/start.xpm", &(a->i), &(a->j));
-	mlx_put_image_to_window(a->mlx, a->win, a->img, (1920 - a->i) / 2, (1080 - a->j) / 2);
+	a->m.choise = 1;
+	a->img = mlx_xpm_file_to_image(a->mlx, START, &(a->i), &(a->j));
+	mlx_put_image_to_window(a->mlx, a->win, a->img,
+			(WIDTH - a->i) / 2, (HEIGHT - a->j) / 2);
 	mlx_string_put(a->mlx, a->win, 960, 530, GREEN, "WOLF3D");
-	mlx_string_put(a->mlx, a->win, 830, 640, YELLOW, "APPUYER SUR ENTRER POUR CONTINUER");
+	mlx_string_put(a->mlx, a->win, 830, 640, YELLOW, TOSTART);
 }
 
-static void ft_checkfile(int fd)
+static void	ft_checkfile(int fd)
 {
 	int		i;
 	int		x;
@@ -64,7 +67,7 @@ static void	ft_checkfiles(t_a *a)
 	}
 }
 
-int 		main(int ac, char **av)
+int			main(int ac, char **av)
 {
 	int		i;
 	t_a		a;
