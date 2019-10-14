@@ -19,6 +19,7 @@ void		ft_init(t_a *a)
 	a->game_start = 0;
 	a->m.choise = 1;
 	a->img = mlx_xpm_file_to_image(a->mlx, START, &(a->i), &(a->j));
+	system("afplay ./songs/start_screen.mp3&");
 	mlx_put_image_to_window(a->mlx, a->win, a->img,
 			(WIDTH - a->i) / 2, (HEIGHT - a->j) / 2);
 	mlx_string_put(a->mlx, a->win, 960, 530, GREEN, "WOLF3D");
